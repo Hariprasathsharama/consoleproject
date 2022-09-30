@@ -1,0 +1,25 @@
+import java.util.ArrayList;
+
+/**
+ * RecordBooks
+ */
+public class RecordBooks {
+  
+
+   public void record(ArrayList<User> user){
+      
+     for (User user2 : user) {
+          System.out.println("Movie Ticket"+"  ->  "+user2.getName().toUpperCase());
+         System.out.println("-------------------------------");
+          System.out.println("Name ->    "+ user2.getName());
+          System.out.println("Moviename ->   " +user2.getUserselectmovie());
+          System.out.println("Number of Tickets ->   "+user2.getTicket());
+          System.out.println("Cost of total Tickets ->   "+user2.getTicketcost());
+          System.out.println("-------------------------------");
+     }
+   }
+
+  
+
+
+}
