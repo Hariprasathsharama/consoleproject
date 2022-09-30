@@ -1,0 +1,75 @@
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.Scanner;
+
+public class Booking {
+    Scanner s=new Scanner(System.in);
+      private static  String sql="INSERT INTO moviesdata" +"(name,moviename,ticket,cost) values " +"(?,?,?,?);";
+      static ArrayList<User> user=new ArrayList<>();//for to store the audience records
+      MovieBookingSystem show=new MovieBookingSystem();//for to show the 
+      RecordBooks records=new RecordBooks();
+      public void booking(ArrayList<Movies> moviearraylist){
+    
+    System.out.println("------- MOVIES LIST ------\n");
+    
+    show.showmovienames();
+    System.out.println("--------------------------");
+  
+    System.out.println("Enter the choice 1/2/3/4/5");  
+    int choice=s.nextInt();
+       
+    User users=new User();
+        
+    for (Movies i : moviearraylist) {
+        if(i.getMovienumber()==choice){
+        
+            int cost=0,ticket=0;String movie;
+             if(users.getTicket()<i.getTotaltickets()){
+                cost=users.getTicket()*i.getCost();
+                ticket=i.getTotaltickets()-users.getTicket();//reduce the seat
+                movie=i.getMoviename();
+                System.out.println("TICKET   BOOKED");
+        
+         
+                i.setTotaltickets(ticket);
+               
+                user.add(new User(users.getName(), users.getTicket(), movie, cost));
+             }
+             else{
+                System.out.println("Sorry ,for " + "  "+ i.getMoviename()+" "+"movie ticket is not available");
+             }
+             try(
+               Connection connection=DriverManager.getConnection("jdbc:mysql://localhost/cinema", "root", "Chrisevans@2309");
+               PreparedStatement preparedstatement=connection.prepareStatement(sql)){
+                 
+               for(Iterator<User> iterator=user.iterator(); iterator.hasNext();){
+                   User audience=(User)iterator.next();
+                   preparedstatement.setString(1,audience.getName() );
+                   preparedstatement.setString(2, audience.getUserselectmovie());
+                   preparedstatement.setInt(3, audience.getTicket());
+                   preparedstatement.setInt(4, audience.getTicketcost());
+                      
+                   preparedstatement.addBatch();
+               }
+               int[] count=preparedstatement.executeBatch();
+               System.out.println(Arrays.toString(count));
+             
+              }
+              catch(Exception e){
+                 System.out.println("Type of exception"+ e);
+              }
+             
+           }
+           
+        }
+        records.record(user);
+      } 
+
+   
+    }
+    
+
