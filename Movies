@@ -1,0 +1,53 @@
+
+public class Movies {
+    private int movienumber;
+    private String moviename;
+    private int totaltickets;
+    
+    private int cost;
+     Movies() {
+        
+    }
+
+ 
+    public Movies(int movienumber, String moviename, int totaltickets, int cost) {
+        this.movienumber = movienumber;
+        this.moviename = moviename;
+        this.totaltickets = totaltickets;
+        this.cost = cost;
+    }
+
+
+    public String getMoviename() {
+        return moviename;
+    }
+    public void setMoviename(String moviename) {
+        this.moviename = moviename;
+    }
+    public int getTotaltickets() {
+        return totaltickets;
+    }
+    public void setTotaltickets(int totaltickets) {
+        this.totaltickets = totaltickets;
+    }
+    public String toString(){
+        return  "Movie   -" + moviename;
+        
+    }
+    public int getCost() {
+        return cost;
+    }
+    public void setCost(int cost) {
+        this.cost = cost;
+    }
+
+
+    public int getMovienumber() {
+        return movienumber;
+    }
+
+
+    public void setMovienumber(int movienumber) {
+        this.movienumber = movienumber;
+    }    
+}
