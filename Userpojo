@@ -1,0 +1,57 @@
+import java.util.Scanner;
+
+public class User {
+private  String name;
+private  int ticket;
+private  String userselectmovie;
+private   int ticketcost;
+public User(String name, int ticket, String userselectmovie, int ticketcost) {
+    this.name = name;
+    this.ticket = ticket;
+    this.userselectmovie = userselectmovie;
+    this.ticketcost = ticketcost;
+}
+
+    User(){
+        Scanner s=new Scanner(System.in);
+        System.out.println("Enter your name");
+        name=s.next();
+        System.out.println("Enter how many ticket");
+        ticket=s.nextInt();
+
+    }
+    
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getTicket() {
+        return ticket;
+    }
+
+    public void setTicket(int ticket) {
+        this.ticket = ticket;
+    }
+
+    public String getUserselectmovie() {
+        return userselectmovie;
+    }
+
+    public void setUserselectmovie(String userselectmovie) {
+        this.userselectmovie = userselectmovie;
+    }
+
+    public int getTicketcost() {
+        return ticketcost;
+    }
+
+    public void setTicketcost(int ticketcost) {
+        this.ticketcost = ticketcost;
+    } 
+    
+        
+}
