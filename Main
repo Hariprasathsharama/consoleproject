@@ -1,0 +1,69 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class MovieBookingSystem {
+    
+    static ArrayList<Movies>moviearraylist=new ArrayList<>();
+   
+    static Booking book=new Booking();  
+     public static void main(String[] args) {
+        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+        System.out.println("|"+centerString(30, "-- WELCOME TO SATHYAM CINEMAS --")+"|");
+        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+        Createmovies();
+       
+        Home();    
+    }
+    public static void Createmovies(){
+         moviearraylist.add(new Movies(1,"ponniyin selvan",10,200));
+         moviearraylist.add(new Movies(2,"Naane varuven",10,200));
+         moviearraylist.add(new Movies(3,"Avatar",10,100));
+         moviearraylist.add(new Movies(4,"Avengers",10,100));
+         moviearraylist.add(new Movies(5,"Iron Man",10,100));
+         
+    }
+
+    private static String centerString(int w,String s) {
+        return String.format("%-" + w + "s", String.format("%" + (s.length() + (w - s.length()) / 2) + "s", s));
+    }
+
+    public static void Home(){
+        Scanner s=new Scanner(System.in);
+        int choice=0;
+        System.out.println("-------------------------------------");
+        System.out.println("|" + centerString(16, "1. BOOKING") + " | "+ centerString(15, "2. EXIT") + " |");
+        System.out.println("-------------------------------------");
+        System.out.println("Enter the choice");
+        try{
+            choice=s.nextInt();
+        }
+        catch(Exception e){
+            System.out.println("Type of exception - "+e);
+            System.out.println("Non-Valid option");
+            Home();
+        }
+        switch (choice) {
+            case 1:
+                    book.booking(moviearraylist);
+                    break;
+            case 2:
+                    break;
+            default:
+                break;
+            
+        }
+        s.close();
+      
+    }
+    public void showmovienames(){
+            int i=1;
+            for (Movies movies : moviearraylist) {
+                System.out.println("   "+i+" -> "+movies.getMoviename().toUpperCase()+" -> "+"Ticket cost"+" -> "+movies.getCost());
+                i++;
+            }            
+    }
+    
+    
+
+}
+
